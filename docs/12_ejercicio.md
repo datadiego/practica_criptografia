@@ -11,6 +11,4 @@ Nonce: 9Yccn/f5nJJhAt2S
 
 ## Procedimiento
 
-Analizando los datos podemos ver que se está utilizando un nonce de 12 bytes, lo cual es incorrecto ya que el nonce debe ser de 16 bytes. Además, el nonce no está en formato hexadecimal, lo cual también es incorrecto.
-
-Idealmente el nonce debe generarse de forma aleatoria y debe ser único para cada mensaje cifrado.
+Analizando los datos podemos ver que se está utilizando un nonce de 12 bytes, lo cual es correcto, pero este es fijo. Esto es un fallo en el uso del algoritmo, ya que el nonce debe ser único para cada mensaje cifrado.
