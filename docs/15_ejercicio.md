@@ -1,7 +1,5 @@
 # Ejercicio 13
 
-## Enunciado
-
 Se nos da un bloque TR31 y su clave de transporte.
 
 Debemos obtener los siguientes datos a partir de los mismos:

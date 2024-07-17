@@ -1,7 +1,5 @@
 # Ejercicio 12
 
-## Enunciado
-
 Debemos detectar un fallo en el uso del siguiente algoritmo AES/GCM.
 
 ## Datos
@@ -11,4 +9,4 @@ Nonce: 9Yccn/f5nJJhAt2S
 
 ## Procedimiento
 
-Analizando los datos podemos ver que se está utilizando un nonce de 12 bytes, lo cual es correcto, pero este es fijo. Esto es un fallo en el uso del algoritmo, ya que el nonce debe ser único para cada mensaje cifrado.
+Analizando los datos podemos ver que se está utilizando un nonce de 12 bytes, lo cual es correcto, pero este es fijo. 

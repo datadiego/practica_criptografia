@@ -1,7 +1,5 @@
 # Ejercicio 4
 
-## Enunciado
-
 Se nos da un jwt y se nos pide con que algoritmo fue firmado.
 Luego se nos proporciona otro jwt, debemos decodificarlo y analizar que está intentando hacer el usuario e intentar validarlo con pyjwt.
 
@@ -12,8 +10,6 @@ jwt: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c3VhcmlvIjoiRG9uIFBlcGl0byBkZSBsb
 ## Procedimiento
 
 Podemos separar las partes del jwt usando como separador el punto. Luego decodificamos el contenido y obtenemos el algoritmo en el campo "alg" del header.
-
-## Solución
 
 El algoritmo con el que fue firmado el jwt es HS256.
 

@@ -1,7 +1,5 @@
 # Ejercicio 7
 
-## Enunciado
-
 Se nos hacen las siguientes preguntas:
 
 - ¿Por qué SHA-1 no es seguro?

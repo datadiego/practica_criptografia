@@ -1,7 +1,5 @@
 # Ejercicio 11
 
-## Enunciado
-
 Se nos da una clave rsa privada y una clave rsa pública y un mensaje cifrado en SHA256.
 Se nos pide descifrar el mensaje, una vez hecho, lo volvemos a descifrar y comprobamos si el cifrado es el mismo que el original.
 

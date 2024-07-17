@@ -1,7 +1,5 @@
 ## Ejercicio 5
 
-### Enunciado
-
 Se nos da un mensaje y su salida en keccak SHA3 y SHA2 y se nos pide identificar el tipo de SHA que se utilizó. 
 Tambien se nos pide convertir a SHA3 Keccak de 256 bits y analizar un mensaje con un cambio menor en el string.
 

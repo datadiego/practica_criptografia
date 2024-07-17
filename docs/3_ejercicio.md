@@ -1,9 +1,5 @@
 # Ejercicio 3
 
-Puedes ejecutar el [script](3_ejercicio.py) con `python 3_ejercicio.py` para la primera parte del ejercicio, y `python 3_ejercicio_poly.py` para la segunda parte.
-
-## Enunciado
-
 Se nos pide cifrar un mensaje en ChaCha20
 Despues se nos pide aumentar la seguridad del cifrado autenticando el mensaje con Poly1305, esto nos permitira detectar si el mensaje ha sido modificado.
 
