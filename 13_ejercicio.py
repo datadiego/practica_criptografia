@@ -1,23 +1,36 @@
-from Crypto.Cipher import PKCS1_v1_5
 from Crypto.PublicKey import RSA
-from Crypto.Random import get_random_bytes
+from Crypto.Signature import pkcs1_15
+#from Crypto.PublicKey import Ed25519
+from Crypto.Hash import SHA256
+import os
 
-keyPair = RSA.generate(3072) # generar un par de claves RSA de 3072 bits
-pubKey = keyPair.publickey() # obtener la clave pública
+# Cargar las llaves RSA
+from Crypto.PublicKey import RSA
 
-privKeyPEM = RSA.import_key(keyPair.exportKey()) # obtener la clave privada
+rsa_pubKey = RSA.import_key(open("clave-rsa-oaep-publ.pem", "rb").read())
+rsa_privKeyPEM = RSA.import_key(open("clave-rsa-oaep-priv.pem", "rb").read())
+mensaje = "El equipo está preparado para seguir con el proceso, necesitaremos más recursos."
+mensaje_bytes = mensaje.encode("utf-8")
+print("Clave RSA pública:", rsa_pubKey)
+print("Clave RSA privada:", rsa_privKeyPEM)
+print("Mensaje: ", mensaje)
+print("Mensaje en bytes: ", mensaje_bytes)
 
-aes_key = get_random_bytes(16) # generar una clave AES de 16 bytes
+hash = SHA256.new(mensaje_bytes)
+signer = pkcs1_15.new(rsa_privKeyPEM)
+signature = signer.sign(hash)
+print("Firma:", signature.hex())
 
-print("Clave AES antes: ", aes_key.hex()) # imprimir la clave AES antes de cifrarla
+print("----")
 
-cipher = PKCS1_v1_5.new(pubKey) # crear un objeto de cifrado PKCS1_v1_5 con la clave pública
-ciphertext = cipher.encrypt(aes_key) # cifrar la clave AES con la clave pública
-print("Clave cifrada:", ciphertext.hex()) # imprimir el texto cifrado
+# Cargar las llaves Ed25519
 
-sentinel = get_random_bytes(16) # generar un centinela aleatorio de 16 bytes
-print("Centinela:" + sentinel.hex()) # imprimir el centinela
+#ed25519_pubKey = Ed25519.import_key(open("clave-ed25519-publ.pem", "rb").read())
+#ed25519_privKey = Ed25519.import_key(open("clave-ed25519-priv.pem", "rb").read())
+#print("Clave Ed25519 pública:", ed25519_pubKey)
 
-cipher = PKCS1_v1_5.new(privKeyPEM) # crear un objeto de cifrado PKCS1_v1_5 con la clave privada
-aes_key = cipher.decrypt(ciphertext,sentinel,expected_pt_len=16) # descifrar la clave AES con la clave privada
-print("Clave AES despues: ", aes_key.hex()) # imprimir la clave AES después de descifrarla
+#hash = SHA256.new(mensaje_bytes)
+#signer = pkcs1_15.new(ed25519_privKey)
+#signature = signer.sign(hash)
+#print("Firma:", signature)
+#print("----")
