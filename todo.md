@@ -1,9 +1,8 @@
 ## TO DO
 
-- [] Ejercicio 10
+- [] Arreglar textos preformateados demasiado largos
 
 ## WIP
-
 
 ## DONE
 
@@ -16,7 +15,8 @@
 - [x] Ejercicio 7
 - [x] Ejercicio 8
 - [x] Ejercicio 9
-- [ ] Ejercicio 11
+- [x] Ejercicio 10
+- [x] Ejercicio 11
 - [x] Ejercicio 12
 - [x] Ejercicio 13
 - [x] Ejercicio 14
