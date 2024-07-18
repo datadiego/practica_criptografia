@@ -7,10 +7,13 @@ Se nos pide descrifrar el mensaje cifrado con el algoritmo AES-256 en modo CBC y
 ## Datos
 
 tag en el keystore: cifrado-sim-aes-256
+
 iv: 0000000000000000000000000000000 (16 bytes)
+
 clave: A2CFF885901A5449E9C448BA5B948A8C4EE377152B3F1ACFA0148FB3A426DB72
-cifrado: TQ9SOMKc6aFS9SlxhfK9wT18UXpPCd505Xf5J/5nLI7Of/o0QKIWXg3nu1RRz4QWElezdrLAD5LO4US
-t3aB/i50nvvJbBiG+le1ZhpR84oI=
+
+cifrado: TQ9SOMKc6aFS9SlxhfK9wT18UXpPCd505Xf5J/5nLI7Of/o0QKIWXg3nu1RRz4QWElezdrLAD5LO4USt3aB/i50nvvJbBiG+le1ZhpR84oI=
+
 tipo: AES/CBC/PKCS
 
 ## Procedimiento

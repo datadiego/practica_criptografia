@@ -6,7 +6,9 @@ Tambien se nos pide convertir a SHA3 Keccak de 256 bits y analizar un mensaje co
 ### Datos
 
 mensaje original: En KeepCoding aprendemos cómo protegernos con criptografía
+
 SHA3:bced1be95fbd85d2ffcce9c85434d79aa26f24ce82fbd4439517ea3f072d56fe
+
 SHA2:4cec5a9f85dcc5c4c6ccb603d124cf1cdc6dfe836459551a1044f4f2908aa5d63739506f6468833d77c07cfd69c488823b8d858283f1d05877120e8c5351c833
 
 mensaje a convertir: En KeepCoding aprendemos cómo protegernos con criptografía.

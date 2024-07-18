@@ -5,6 +5,7 @@ Se han disociado dos claves, se nos da una clave fija y otra clave que se ha obt
 ## Datos
 
 memoria:  0x91ba13ba21aabb12
+
 fija:  0xb1ef2acfe2baeeff
 
 ## Procedimiento
@@ -30,10 +31,13 @@ Se nos pide descrifrar el mensaje cifrado con el algoritmo AES-256 en modo CBC y
 ## Datos
 
 tag en el keystore: cifrado-sim-aes-256
+
 iv: 0000000000000000000000000000000 (16 bytes)
+
 clave: A2CFF885901A5449E9C448BA5B948A8C4EE377152B3F1ACFA0148FB3A426DB72
-cifrado: TQ9SOMKc6aFS9SlxhfK9wT18UXpPCd505Xf5J/5nLI7Of/o0QKIWXg3nu1RRz4QWElezdrLAD5LO4US
-t3aB/i50nvvJbBiG+le1ZhpR84oI=
+
+cifrado: TQ9SOMKc6aFS9SlxhfK9wT18UXpPCd505Xf5J/5nLI7Of/o0QKIWXg3nu1RRz4QWElezdrLAD5LO4USt3aB/i50nvvJbBiG+le1ZhpR84oI=
+
 tipo: AES/CBC/PKCS
 
 ## Procedimiento
@@ -56,20 +60,16 @@ Después de cifrar el mensaje, se nos pide mejorar la seguridad del cifrado aute
 ## Datos
 
 mensaje: KeepCoding te enseña a codificar y a cifrar
+
 clave: AF9DF30474898787A45605CCB9B936D33B780D03CABC81719D52383480DC3120
+
 nonce: 9Yccn/f5nJJhAt2S
 
 ## Procedimiento
 
-En cyberchef, podemos usar la receta "ChaCha20 Encrypt" con los datos, deberemos convertir el mensaje a hex, podemos usar la siguiente receta:
-
-```
-```
-
 En python, deberemos asegurarnos de tener los datos necesarios, el mensaje, clave y nonce, convertimos a bytes el mensaje y la clave, y ciframos el mensaje con la clave y el nonce.
 
 Para autenticar el mensaje, deberemos usar Poly1305, deberemos generar un Nonce de 12 bytes, unos datos adicionales que servirán para autenticar el mensaje, y la clave, con estos datos, generamos un tag que servirá para autenticar el mensaje.
-
 
 ![Ejercicio 3](./imgs/3.png)# Ejercicio 4
 
@@ -103,7 +103,9 @@ Tambien se nos pide convertir a SHA3 Keccak de 256 bits y analizar un mensaje co
 ### Datos
 
 mensaje original: En KeepCoding aprendemos cómo protegernos con criptografía
+
 SHA3:bced1be95fbd85d2ffcce9c85434d79aa26f24ce82fbd4439517ea3f072d56fe
+
 SHA2:4cec5a9f85dcc5c4c6ccb603d124cf1cdc6dfe836459551a1044f4f2908aa5d63739506f6468833d77c07cfd69c488823b8d858283f1d05877120e8c5351c833
 
 mensaje a convertir: En KeepCoding aprendemos cómo protegernos con criptografía.
@@ -157,6 +159,7 @@ Se nos pide calcular la HMAC del mensaje "Siempre existe más de una forma de ha
 ## Datos
 
 Mensaje: Siempre existe más de una forma de hacerlo, y más de una solución válida
+
 Clave: A212A51C997E14B4DF08D55967641B0677CA31E049E672A4B06861AA4D5826EB
 
 ## Procedimiento
@@ -207,7 +210,9 @@ KCV(AES) => primeros 3 bytes de AES de la clave o toda??
 ## Datos
 
 Clave AES: A2CFF885901A5449E9C448BA5B948A8C4EE377152B3F1ACFA0148FB3A426DB72
+
 mensaje: 00000000000000000000000000000000
+
 iv: 00000000000000000000000000000000
 
 ## Procedimiento
@@ -228,22 +233,69 @@ mensaje: Se debe ascender inmediatamente a Raúl. Es necesario mejorarle sus con
 económicas un 20% para que se quede con nosotros.
 
 firma pgp: MensajeRespoDRaulARRHH.txt.sig
+
 claves: Pedro-priv.txt y Pedro-publ.txt
 
-mensaje a firmar: Viendo su perfil en el mercado, hemos decidido ascenderle y mejorarle un 25% su 
+mensaje a firmar como RRHH: Viendo su perfil en el mercado, hemos decidido ascenderle y mejorarle un 25% su 
 salario. Saludos.
 
-mensaje a cifrar con publica de RRHH y con la publica de Pedro: Estamos todos de acuerdo, el ascenso será el mes que viene, agosto, si no hay 
-sorpresas.# Ejercicio 11
+mensaje a cifrar con cable publica de RRHH y pedro: Estamos todos de acuerdo, el ascenso será el mes que viene, agosto, si no hay 
+sorpresas.
+
+## Procedimiento
+
+Para verificar la firma del archivo "MensajeRespoDeRaulARRHH.txt.sig" debemos importar la clave pública de Pedro y verificar la firma del archivo:
+
+```bash
+gpg --import Pedro-publ.txt
+```
+
+![Importar clave pública de Pedro](./imgs/10.png)
+
+Una vez importada la clave pública de Pedro, verificamos la firma del archivo "MensajeRespoDeRaulARRHH.txt.sig":
+
+```bash
+gpg --verify MensajeRespoDeRaulARRHH.txt.sig
+```
+
+![Verificar firma del archivo](./imgs/10b.png)
+
+Para firmar el segundo mensaje como si fueramos RRHH, primero importamos la clave privada de RRHH:
+
+```bash
+gpg --import RRHH-priv.txt
+```
+
+![Importar clave privada de RRHH](./imgs/10c.png)
+
+Necesitaremos el id de la clave privada que acabamos de importar, podemos verlas con `gpg --list-secret-keys`:
+
+![Listar claves privadas](./imgs/10d.png)
+
+Con el id de la clave privada de RRHH, firmamos el mensaje usando `gpg --output <archivo_salida> --sign -u <id> mensaje.txt`:
+
+
+![Firmar mensaje](./imgs/10e.png)
+
+Para cifrar el mensaje con la clave pública de RRHH y Pedro, importamos las claves publicas necesarias y comprobamos sus ids con `gpg --list-keys`:
+
+![Listar claves públicas](./imgs/10f.png)
+
+Con los ids de las claves públicas de RRHH y Pedro, ciframos el mensaje con `gpg --output <archivo_salida> --encrypt --recipient <id> --recipient <id> mensaje.txt`:
+
+![Cifrar mensaje](./imgs/10g.png)
+
+El archivo cifrado está en `ejercicios/mensaje_cifrado.gpg`:
+# Ejercicio 11
 
 Se nos da una clave rsa privada y una clave rsa pública y un mensaje cifrado en RSA OAEP mediante SHA-256.
 Se nos pide descifrar el mensaje, una vez hecho, lo volvemos a descifrar y comprobamos si el cifrado es el mismo que el original.
 
-# Datos
+## Datos
 
 SHA256: b72e6fd48155f565dd2684df3ffa8746d649b11f0ed4637fc4c99d18283b32e1709b30c96b4a8a20d5dbc639e9d83a53681e6d96f76a0e4c279f0dffa76a329d04e3d3d4ad629793eb00cc76d10fc00475eb76bfbc1273303882609957c4c0ae2c4f5ba670a4126f2f14a9f4b6f41aa2edba01b4bd586624659fca82f5b4970186502de8624071be78ccef573d896b8eac86f5d43ca7b10b59be4acf8f8e0498a455da04f67d3f98b4cd907f27639f4b1df3c50e05d5bf63768088226e2a9177485c54f72407fdf358fe64479677d8296ad38c6f177ea7cb74927651cf24b01dee27895d4f05fb5c161957845cd1b5848ed64ed3b03722b21a526a6e447cb8ee
 
-Hacemos cat *.pem para ver el contenido de los archivos y vemos que son claves RSA.
+Podemos hacer cat *.pem para ver el contenido de los archivos y vemos que son claves RSA.
 
 ```bash
 -----BEGIN PRIVATE KEY-----
@@ -285,7 +337,7 @@ bQIDAQAB
 -----END PUBLIC KEY-----
 ```
 
-# Procedimiento
+# Proceso
 
 Usaremos las clave RSA privada para descifrar y volver a cifrar el mensaje.
 
@@ -297,7 +349,8 @@ Debemos detectar un fallo en el uso del siguiente algoritmo AES/GCM.
 
 ## Datos
 
-Clave: E2CFF885901B3449E9C448BA5B948A8C4EE322152B3F1ACFA0148FB3A426DB74 
+Clave: E2CFF885901B3449E9C448BA5B948A8C4EE322152B3F1ACFA0148FB3A426DB74
+
 Nonce: 9Yccn/f5nJJhAt2S
 
 ## Procedimiento
@@ -311,10 +364,13 @@ Además, debemos calcular el valor de la firma hexadecimal con la curva elíptic
 ## Datos
 
 mensaje: El equipo está preparado para seguir con el proceso, necesitaremos más recursos
+
 clave privada: clave-rsa-oaep-priv.pem
+
 clave publica: clave-rsa-oaep-publ.pem
 
 clave privada ed: ed25519-priv
+
 clave publica ed: ed25519-publ
 
 ## Procedimiento
@@ -323,27 +379,23 @@ Importamos nuestras claves publica y privada en formato pem y el mensaje a firma
 
 ![Ejercicio 13](./imgs/13.png)
 
-## Dudas/Errores
+El proceso para calcular la firma con la curva elíptica ed25519 es similar, importamos las claves y el mensaje, calculamos el hash del mensaje y firmamos el hash con la clave privada. Finalmente, mostramos la firma en hexadecimal.
 
-No consigo firmar con la curva elíptica ed25519.
-En el archivo 13_ejercicio.py, la siguiente importacion falla, aunque en el resto de ejercicios la libreria funciona correctamente:
-
-```python
-from Crypto.PublicKey import Ed25519
-```# Ejercicio 14
+![Ejercicio 13b](./imgs/13b.png)# Ejercicio 14
 
 Se nos pide calcular una clave AES, usando una HKDF con SHA-512, se nos da una clave maestra en el keystore y un identificador de dispositivo.
 
 ## Datos
 
 Master key: A2CFF885901A5449E9C448BA5B948A8C4EE377152B3F1ACFA0148FB3A426DB72
+
 identificador: e43bb4067cbcfab3bec54437b84bef4623e345682d89de9948fbb0afedc461a3
 
 ## Procedimiento
 
 Importamos la masterkey del keystore y el identificador del dispositivo. Calculamos la clave AES con HKDF y SHA-512. Finalmente, mostramos la clave en hexadecimal.
 
-![Ejercicio 14](./imgs/14.png)# Ejercicio 13
+![Ejercicio 14](./imgs/14.png)# Ejercicio 15
 
 Se nos da un bloque TR31 y su clave de transporte.
 

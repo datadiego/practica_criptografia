@@ -5,6 +5,7 @@ Se han disociado dos claves, se nos da una clave fija y otra clave que se ha obt
 ## Datos
 
 memoria:  0x91ba13ba21aabb12
+
 fija:  0xb1ef2acfe2baeeff
 
 ## Procedimiento
