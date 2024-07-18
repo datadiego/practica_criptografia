@@ -1,6 +1,6 @@
 # Ejercicio 11
 
-Se nos da una clave rsa privada y una clave rsa pública y un mensaje cifrado en SHA256.
+Se nos da una clave rsa privada y una clave rsa pública y un mensaje cifrado en RSA OAEP mediante SHA-256.
 Se nos pide descifrar el mensaje, una vez hecho, lo volvemos a descifrar y comprobamos si el cifrado es el mismo que el original.
 
 # Datos
@@ -51,12 +51,8 @@ bQIDAQAB
 
 # Procedimiento
 
-Para descifrar el mensaje, primero necesitamos la clave privada. La clave privada está en el archivo `private.pem`. La clave pública está en el archivo `public.pem`.
+Usaremos las clave RSA privada para descifrar y volver a cifrar el mensaje.
 
-Descifrandolo usaremos como IV los primeros 16 bytes del mensaje cifrado.
-
-```bash
-openssl rsautl -decrypt -inkey private.pem -in 11.enc -out 11.dec -raw -oaep
-```
+El padding de PKCS1_OAEP que usamos introduce aleatoriedad en el cifrado, por lo que al descifrar y volver a cifrar el mensaje, obtendremos un mensaje cifrado diferente.
 
 ![Ejercicio 11](./imgs/11.png)

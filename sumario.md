@@ -1,4 +1,18 @@
-TO DO:
+## TO DO
+
+- [] Ejercicio 10
+
+## WIP
+
+- [] Ejercicio 12
+    - Falta codigo demostrando que reutilizar el nonce en AES/GCM es inseguro
+- [] Ejercicio 13
+    - No consigo importar el siguiente módulo:
+ ```python
+ from Crypto.PublicKey import Ed25519
+ ```
+
+## DONE
 
 - [x] Ejercicio 1
 - [x] Ejercicio 2
@@ -9,9 +23,5 @@ TO DO:
 - [x] Ejercicio 7
 - [x] Ejercicio 8
 - [x] Ejercicio 9
-- [?] Ejercicio 10, NADA
-- [x] Ejercicio 11, hecho pero tengo una duda, no se por que es diferente mi cifrado
-- [x] Ejercicio 12, falta codigo
-- [x] Ejercicio 13, falta la ultima parte con ed25519
-- [?] Ejercicio 14, wip
+- [x] Ejercicio 14
 - [x] Ejercicio 15

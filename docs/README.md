@@ -11,7 +11,7 @@ fija:  0xb1ef2acfe2baeeff
 
 Para obtener la clave original, se debe realizar una operación XOR entre la clave fija y la clave obtenida de la memoria. Gracias a la propiedad conmutativa de la operación XOR, se puede obtener la clave original:
 
-```
+```bash
 0101 XOR 1100 = 1001
 
 0101 XOR 1001 = 1100
@@ -40,7 +40,7 @@ tipo: AES/CBC/PKCS
 
 En cyberchef, podemos usar la receta "AES Decrypt" con los datos, deberemos convertir el mensaje de base64 a hex o raw, podemos usar la siguiente receta:
 
-```
+```bash
 From_Base64('A-Za-z0-9+/=',true,false)
 To_Hex('Space',0)
 AES_Decrypt({'option':'Hex','string':'A2CFF885901A5449E9C448BA5B948A8C4EE377152B3F1ACFA0148FB3A426DB72'},{'option':'Hex','string':'0000000000000000000000000000000'},'CBC','Hex','Raw',{'option':'Hex','string':''},{'option':'Hex','string':''})
@@ -91,6 +91,8 @@ El cuerpo del jwt es:
 ```json
 {"usuario":"Don Pepito de los palotes","rol":"isNormal","iat":1667933533}
 ```
+
+Si analizamos el segundo token, podemos ver que el usuario intenta cambiar su rol a "isAdmin" para obtener más permisos.
 
 ![Ejercicio 4](./imgs/4.png)
 ## Ejercicio 5
@@ -214,9 +216,27 @@ Para obtener el KCV de la clave AES ciframos el mensaje (en este caso 16 bytes d
 
 Para obtener el KCV de la clave SHA-256, simplemente obtenemos los primeros 3 bytes de la salida de la función hash SHA-256 de la clave y los convertimos a hexadecimal.
 
-![Ejercicio 9](./imgs/9.png)# Ejercicio 11
+![Ejercicio 9](./imgs/9.png)# Ejercicio 10
 
-Se nos da una clave rsa privada y una clave rsa pública y un mensaje cifrado en SHA256.
+Se nos pide verificar la firma del fichero "MensajeRespoDeRaulARRHH.txt.sig" y evidenciar que el mensaje fue firmado por Pedro.
+
+Además, se nos pide firmar el siguiente mensaje:
+
+## Datos
+
+mensaje: Se debe ascender inmediatamente a Raúl. Es necesario mejorarle sus condiciones 
+económicas un 20% para que se quede con nosotros.
+
+firma pgp: MensajeRespoDRaulARRHH.txt.sig
+claves: Pedro-priv.txt y Pedro-publ.txt
+
+mensaje a firmar: Viendo su perfil en el mercado, hemos decidido ascenderle y mejorarle un 25% su 
+salario. Saludos.
+
+mensaje a cifrar con publica de RRHH y con la publica de Pedro: Estamos todos de acuerdo, el ascenso será el mes que viene, agosto, si no hay 
+sorpresas.# Ejercicio 11
+
+Se nos da una clave rsa privada y una clave rsa pública y un mensaje cifrado en RSA OAEP mediante SHA-256.
 Se nos pide descifrar el mensaje, una vez hecho, lo volvemos a descifrar y comprobamos si el cifrado es el mismo que el original.
 
 # Datos
@@ -267,13 +287,9 @@ bQIDAQAB
 
 # Procedimiento
 
-Para descifrar el mensaje, primero necesitamos la clave privada. La clave privada está en el archivo `private.pem`. La clave pública está en el archivo `public.pem`.
+Usaremos las clave RSA privada para descifrar y volver a cifrar el mensaje.
 
-Descifrandolo usaremos como IV los primeros 16 bytes del mensaje cifrado.
-
-```bash
-openssl rsautl -decrypt -inkey private.pem -in 11.enc -out 11.dec -raw -oaep
-```
+El padding de PKCS1_OAEP que usamos introduce aleatoriedad en el cifrado, por lo que al descifrar y volver a cifrar el mensaje, obtendremos un mensaje cifrado diferente.
 
 ![Ejercicio 11](./imgs/11.png)# Ejercicio 12
 
@@ -287,6 +303,47 @@ Nonce: 9Yccn/f5nJJhAt2S
 ## Procedimiento
 
 Usando los datos conseguimos cifrar y descifrar un mensaje. Sin embargo, en el enunciado se dice que en cada comunicación el nonce es compartido. Lo ideal es que el nonce sea único para cada mensaje cifrado.# Ejercicio 13
+
+Se nos pide calcular una firma en hexadecimal con PKCS#1 v1.5 del mensaje dado. Para ello, se nos proporciona la clave privada y publica en formato pem.
+
+Además, debemos calcular el valor de la firma hexadecimal con la curva elíptica ed25519 del mensaje dado con otras claves.
+
+## Datos
+
+mensaje: El equipo está preparado para seguir con el proceso, necesitaremos más recursos
+clave privada: clave-rsa-oaep-priv.pem
+clave publica: clave-rsa-oaep-publ.pem
+
+clave privada ed: ed25519-priv
+clave publica ed: ed25519-publ
+
+## Procedimiento
+
+Importamos nuestras claves publica y privada en formato pem y el mensaje a firmar. Calculamos el hash del mensaje con sha256 y firmamos el hash con la clave privada. Finalmente, mostramos la firma en hexadecimal.
+
+![Ejercicio 13](./imgs/13.png)
+
+## Dudas/Errores
+
+No consigo firmar con la curva elíptica ed25519.
+En el archivo 13_ejercicio.py, la siguiente importacion falla, aunque en el resto de ejercicios la libreria funciona correctamente:
+
+```python
+from Crypto.PublicKey import Ed25519
+```# Ejercicio 14
+
+Se nos pide calcular una clave AES, usando una HKDF con SHA-512, se nos da una clave maestra en el keystore y un identificador de dispositivo.
+
+## Datos
+
+Master key: A2CFF885901A5449E9C448BA5B948A8C4EE377152B3F1ACFA0148FB3A426DB72
+identificador: e43bb4067cbcfab3bec54437b84bef4623e345682d89de9948fbb0afedc461a3
+
+## Procedimiento
+
+Importamos la masterkey del keystore y el identificador del dispositivo. Calculamos la clave AES con HKDF y SHA-512. Finalmente, mostramos la clave en hexadecimal.
+
+![Ejercicio 14](./imgs/14.png)# Ejercicio 13
 
 Se nos da un bloque TR31 y su clave de transporte.
 

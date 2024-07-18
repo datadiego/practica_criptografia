@@ -19,4 +19,6 @@ El cuerpo del jwt es:
 {"usuario":"Don Pepito de los palotes","rol":"isNormal","iat":1667933533}
 ```
 
+Si analizamos el segundo token, podemos ver que el usuario intenta cambiar su rol a "isAdmin" para obtener más permisos.
+
 ![Ejercicio 4](./imgs/4.png)
