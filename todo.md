@@ -4,13 +4,6 @@
 
 ## WIP
 
-- [] Ejercicio 12
-    - Falta codigo demostrando que reutilizar el nonce en AES/GCM es inseguro
-- [] Ejercicio 13
-    - No consigo importar el siguiente módulo:
- ```python
- from Crypto.PublicKey import Ed25519
- ```
 
 ## DONE
 
@@ -23,5 +16,8 @@
 - [x] Ejercicio 7
 - [x] Ejercicio 8
 - [x] Ejercicio 9
+- [ ] Ejercicio 11
+- [x] Ejercicio 12
+- [x] Ejercicio 13
 - [x] Ejercicio 14
 - [x] Ejercicio 15

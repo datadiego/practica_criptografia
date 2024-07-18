@@ -12,8 +12,53 @@ económicas un 20% para que se quede con nosotros.
 firma pgp: MensajeRespoDRaulARRHH.txt.sig
 claves: Pedro-priv.txt y Pedro-publ.txt
 
-mensaje a firmar: Viendo su perfil en el mercado, hemos decidido ascenderle y mejorarle un 25% su 
+mensaje a firmar como RRHH: Viendo su perfil en el mercado, hemos decidido ascenderle y mejorarle un 25% su 
 salario. Saludos.
 
-mensaje a cifrar con publica de RRHH y con la publica de Pedro: Estamos todos de acuerdo, el ascenso será el mes que viene, agosto, si no hay 
+mensaje a cifrar con cable publica de RRHH y pedro: Estamos todos de acuerdo, el ascenso será el mes que viene, agosto, si no hay 
 sorpresas.
+
+## Procedimiento
+
+Para verificar la firma del archivo "MensajeRespoDeRaulARRHH.txt.sig" debemos importar la clave pública de Pedro y verificar la firma del archivo:
+
+```bash
+gpg --import Pedro-publ.txt
+```
+
+![Importar clave pública de Pedro](./images/10.png)
+
+Una vez importada la clave pública de Pedro, verificamos la firma del archivo "MensajeRespoDeRaulARRHH.txt.sig":
+
+```bash
+gpg --verify MensajeRespoDeRaulARRHH.txt.sig
+```
+
+![Verificar firma del archivo](./images/10_b.png)
+
+Para firmar el segundo mensaje como si fueramos RRHH, primero importamos la clave privada de RRHH:
+
+```bash
+gpg --import RRHH-priv.txt
+```
+
+![Importar clave privada de RRHH](./images/10_c.png)
+
+Necesitaremos el id de la clave privada que acabamos de importar, podemos verlas con `gpg --list-secret-keys`:
+
+![Listar claves privadas](./images/10_d.png)
+
+Con el id de la clave privada de RRHH, firmamos el mensaje usando `gpg --output <archivo_salida> --sign -u <id> mensaje.txt`:
+
+
+![Firmar mensaje](./images/10_e.png)
+
+Para cifrar el mensaje con la clave pública de RRHH y Pedro, importamos las claves publicas necesarias y comprobamos sus ids con `gpg --list-keys`:
+
+![Listar claves públicas](./images/10_f.png)
+
+Con los ids de las claves públicas de RRHH y Pedro, ciframos el mensaje con `gpg --output <archivo_salida> --encrypt --recipient <id> --recipient <id> mensaje.txt`:
+
+![Cifrar mensaje](./images/10_g.png)
+
+El archivo cifrado está en `ejercicios/mensaje_cifrado.gpg`:
