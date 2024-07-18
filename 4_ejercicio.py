@@ -12,8 +12,13 @@ print("Header: ", header)
 print("Payload: ", payload)
 print("Signature: ", signature)
 
-hacker_token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c3VhcmlvIjoiRG9uIFBlcGl0byBkZSBsb3MgcGFsb3RlcyIsInJvbCI6ImlzQWRtaW4iLCJpYXQiOjE2Njc5MzM1MzN9.krgBkzCBQ5WZ8JnZHuRvmnAZdg4ZMeRNv2CIAODlHRI"
+hacker_token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c3VhcmlvIjoiRG9uIFBlcGl0byBkZSBsb3MgcGFsb3RlcyIsInJvbCI6ImlzQWRtaW4iLCJpYXQiOjE2Njc5MzM1MzN9.krgBkzCBQ5WZ8JnZHuRvmnAZdg4ZMeRNv2CIAODlHR"
 
-decode_jwt = jwt.decode(hacker_token,"KeepCoding", algorithms="HS256")
-
-print(decode_jwt)
+header, payload, signature = hacker_token.split(".")
+header = base64.b64decode(header + "==").decode()
+payload = base64.b64decode(payload + "==").decode()
+signature = base64.b64decode(signature + "==")
+print("----")
+print("Header: ", header)
+print("Payload: ", payload, "<-- esta intentando hacerse pasar por un administrador")
+print("Signature: ", signature)

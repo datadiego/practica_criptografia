@@ -11,11 +11,14 @@ fija:  0xb1ef2acfe2baeeff
 
 Para obtener la clave original, se debe realizar una operación XOR entre la clave fija y la clave obtenida de la memoria. Gracias a la propiedad conmutativa de la operación XOR, se puede obtener la clave original:
 
-```
+```bash
 0101 XOR 1100 = 1001
 
 0101 XOR 1001 = 1100
 
 1100 XOR 1001 = 0101
 ```
-keymanager = clave_memoria ⊕ clave_fija:  0x20553975c31055ed
+
+keymanager = clave_memoria XOR clave_fija:  0x20553975c31055ed
+
+![Ejercicio 1](./imgs/1.png)

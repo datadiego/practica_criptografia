@@ -59,3 +59,4 @@ Descifrandolo usaremos como IV los primeros 16 bytes del mensaje cifrado.
 openssl rsautl -decrypt -inkey private.pem -in 11.enc -out 11.dec -raw -oaep
 ```
 
+![Ejercicio 11](./imgs/11.png)

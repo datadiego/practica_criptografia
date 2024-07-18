@@ -20,3 +20,4 @@ Para obtener el KCV de la clave AES ciframos el mensaje (en este caso 16 bytes d
 
 Para obtener el KCV de la clave SHA-256, simplemente obtenemos los primeros 3 bytes de la salida de la función hash SHA-256 de la clave y los convertimos a hexadecimal.
 
+![Ejercicio 9](./imgs/9.png)

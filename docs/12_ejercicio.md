@@ -9,4 +9,4 @@ Nonce: 9Yccn/f5nJJhAt2S
 
 ## Procedimiento
 
-Analizando los datos podemos ver que se está utilizando un nonce de 12 bytes, lo cual es correcto, pero este es fijo. 
+Usando los datos conseguimos cifrar y descifrar un mensaje. Sin embargo, en el enunciado se dice que en cada comunicación el nonce es compartido. Lo ideal es que el nonce sea único para cada mensaje cifrado.

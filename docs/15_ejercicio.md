@@ -48,16 +48,4 @@ Algoritmos posibles: AES
 Key usage: Symmetric Key for Data Encryption 
 Exportable: Sensitive, exportable under untrusted key
 
-## Solucion
-
-Algoritmo para proteger el bloque de clave: AES Key Derivation Binding Method
-
-Para que algoritmo se ha definido la clave: AES
-
-Para que modo de uso se ha generado: Both Encrypt & Decrypt / Wrap & Unwrap
-
-Es exportable con una clave no confiable
-
-Podemos usar la clave para ********
-
-El valor de la clave es: c2c1c1c1c1c1c1c1c1c1c1c1c1c1c1c2
+![Ejercicio 13](./imgs/13.png)

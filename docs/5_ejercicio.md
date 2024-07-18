@@ -52,3 +52,5 @@ sha3_256 32 bced1be95fbd85d2ffcce9c85434d79aa26f24ce82fbd4439517ea3f072d56fe
 ```
 
 Podemos ver que el hash cambia completamente, por lo que los hashes son lo suficientemente distintos con un cambio menor.
+
+![Ejercicio 5](./imgs/5.png)

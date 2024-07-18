@@ -12,3 +12,5 @@ SHA-1 es vulnerable a colisiones entre hashes, con diferentes mensajes se puede 
 En cuanto a SHA-256, es un algoritmo más seguro que SHA-1, pero se puede mejorar su seguridad añadiendo un salt a los datos antes de cifrarlos, esto hará más difícil la generación de colisiones entre hashes.
 
 Adicionalmente, podemos añadir un pepper a los datos antes de cifrarlos, esto añadirá una capa de seguridad adicional a los datos cifrados.
+
+![Ejercicio 7](./imgs/7.png)

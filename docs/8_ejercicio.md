@@ -11,3 +11,5 @@ Se asume que el sistema no usa TLS (https) para cifrar los datos.
 Podemos usar o AES/GCM o Chacha20-poly1305 para el cifrado, los dos aseguran integridad y confidencialidad.
 
 Si buscamos rapidez, podemos elegir Chacha20-poly1305, que es más rápido que AES/GCM.
+
+![Ejercicio 8](./imgs/8.png)

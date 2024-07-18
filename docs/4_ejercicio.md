@@ -18,3 +18,5 @@ El cuerpo del jwt es:
 ```json
 {"usuario":"Don Pepito de los palotes","rol":"isNormal","iat":1667933533}
 ```
+
+![Ejercicio 4](./imgs/4.png)

@@ -11,7 +11,7 @@ TO DO:
 - [x] Ejercicio 9
 - [?] Ejercicio 10, NADA
 - [x] Ejercicio 11, hecho pero tengo una duda, no se por que es diferente mi cifrado
-- [x] Ejercicio 12
+- [x] Ejercicio 12, falta codigo
 - [x] Ejercicio 13, falta la ultima parte con ed25519
 - [?] Ejercicio 14, wip
 - [x] Ejercicio 15

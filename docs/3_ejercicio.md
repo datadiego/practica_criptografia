@@ -23,3 +23,4 @@ En python, deberemos asegurarnos de tener los datos necesarios, el mensaje, clav
 Para autenticar el mensaje, deberemos usar Poly1305, deberemos generar un Nonce de 12 bytes, unos datos adicionales que servirán para autenticar el mensaje, y la clave, con estos datos, generamos un tag que servirá para autenticar el mensaje.
 
 
+![Ejercicio 3](./imgs/3.png)
