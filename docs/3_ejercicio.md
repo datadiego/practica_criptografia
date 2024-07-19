@@ -7,11 +7,13 @@ Después de cifrar el mensaje, se nos pide mejorar la seguridad del cifrado aute
 
 ## Datos
 
-mensaje: KeepCoding te enseña a codificar y a cifrar
+```bash
+Mensaje: KeepCoding te enseña a codificar y a cifrar
 
-clave: AF9DF30474898787A45605CCB9B936D33B780D03CABC81719D52383480DC3120
+Clave: AF9DF30474898787A45605CCB9B936D33B780D03CABC81719D52383480DC3120
 
-nonce: 9Yccn/f5nJJhAt2S
+Nonce: 9Yccn/f5nJJhAt2S
+```
 
 ## Procedimiento
 

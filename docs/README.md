@@ -30,15 +30,18 @@ Se nos pide descrifrar el mensaje cifrado con el algoritmo AES-256 en modo CBC y
 
 ## Datos
 
-tag en el keystore: cifrado-sim-aes-256
+```bash
+Tag en el keystore: cifrado-sim-aes-256
 
-iv: 0000000000000000000000000000000 (16 bytes)
+IV: 0000000000000000000000000000000 (16 bytes)
 
-clave: A2CFF885901A5449E9C448BA5B948A8C4EE377152B3F1ACFA0148FB3A426DB72
+Clave: A2CFF885901A5449E9C448BA5B948A8C4EE377152B3F1ACFA0148FB3A426DB72
 
-cifrado: TQ9SOMKc6aFS9SlxhfK9wT18UXpPCd505Xf5J/5nLI7Of/o0QKIWXg3nu1RRz4QWElezdrLAD5LO4USt3aB/i50nvvJbBiG+le1ZhpR84oI=
+Cifrado: TQ9SOMKc6aFS9SlxhfK9wT18UXpPCd505Xf5J/5nLI7Of/o0QKIWXg
+3nu1RRz4QWElezdrLAD5LO4USt3aB/i50nvvJbBiG+le1ZhpR84oI=
 
-tipo: AES/CBC/PKCS
+Tipo: AES/CBC/PKCS
+```
 
 ## Procedimiento
 
@@ -47,8 +50,30 @@ En cyberchef, podemos usar la receta "AES Decrypt" con los datos, deberemos conv
 ```bash
 From_Base64('A-Za-z0-9+/=',true,false)
 To_Hex('Space',0)
-AES_Decrypt({'option':'Hex','string':'A2CFF885901A5449E9C448BA5B948A8C4EE377152B3F1ACFA0148FB3A426DB72'},{'option':'Hex','string':'0000000000000000000000000000000'},'CBC','Hex','Raw',{'option':'Hex','string':''},{'option':'Hex','string':''})
+AES_Decrypt({
+    'option':'Hex',
+    'string':'A2CFF885901A5449E9C448BA5B948A8C4EE377152B3F1ACFA0148FB3A426DB72'
+    },
+    {
+        'option':'Hex',
+        'string':'0000000000000000000000000000000'
+    },
+    'CBC',
+    'Hex',
+    'Raw',
+    {
+        'option':'Hex',
+        'string':''
+    },
+    {
+        'option':'Hex',
+        'string':''
+    })
 ```
+
+Una vez cargados los datos obtenemos el mensaje.
+
+También podemos usar python, importando la clave y el IV en hexadecimal, y el mensaje cifrado en base64, y decodificarlo:
 
 ![Ejercicio 2](./imgs/2.png)# Ejercicio 3
 
@@ -59,11 +84,13 @@ Después de cifrar el mensaje, se nos pide mejorar la seguridad del cifrado aute
 
 ## Datos
 
-mensaje: KeepCoding te enseña a codificar y a cifrar
+```bash
+Mensaje: KeepCoding te enseña a codificar y a cifrar
 
-clave: AF9DF30474898787A45605CCB9B936D33B780D03CABC81719D52383480DC3120
+Clave: AF9DF30474898787A45605CCB9B936D33B780D03CABC81719D52383480DC3120
 
-nonce: 9Yccn/f5nJJhAt2S
+Nonce: 9Yccn/f5nJJhAt2S
+```
 
 ## Procedimiento
 
@@ -78,7 +105,11 @@ Luego se nos proporciona otro jwt, debemos decodificarlo y analizar que está in
 
 ## Datos
 
-jwt: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c3VhcmlvIjoiRG9uIFBlcGl0byBkZSBsb3MgcGFsb3RlcyIsInJvbCI6ImlzTm9ybWFsIiwiaWF0IjoxNjY3OTMzNTMzfQ.gfhw0dDxp6oixMLXXRP97W4TDTrv0y7B5YjD0U8ixrE"
+```bash
+JWT: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c3VhcmlvIjoiRG9u
+IFBlcGl0byBkZSBsb3MgcGFsb3RlcyIsInJvbCI6ImlzTm9ybWFsIiwiaWF0Ijo
+xNjY3OTMzNTMzfQ.gfhw0dDxp6oixMLXXRP97W4TDTrv0y7B5YjD0U8ixrE"
+```
 
 ## Procedimiento
 
@@ -102,13 +133,17 @@ Tambien se nos pide convertir a SHA3 Keccak de 256 bits y analizar un mensaje co
 
 ### Datos
 
-mensaje original: En KeepCoding aprendemos cómo protegernos con criptografía
+```bash
+Mensaje_original: En KeepCoding aprendemos cómo protegernos con criptografía
 
-SHA3:bced1be95fbd85d2ffcce9c85434d79aa26f24ce82fbd4439517ea3f072d56fe
+SHA3: bced1be95fbd85d2ffcce9c85434d79aa26f24ce82fbd4439517ea3f072d56fe
 
-SHA2:4cec5a9f85dcc5c4c6ccb603d124cf1cdc6dfe836459551a1044f4f2908aa5d63739506f6468833d77c07cfd69c488823b8d858283f1d05877120e8c5351c833
+SHA2: 4cec5a9f85dcc5c4c6ccb603d124cf1cdc6dfe836459551a1044f4f29
+08aa5d63739506f6468833d77c07cfd69c488823b8d858283f1d05877120e8c
+5351c833
 
-mensaje a convertir: En KeepCoding aprendemos cómo protegernos con criptografía.
+Mensaje_diferente: En KeepCoding aprendemos cómo protegernos con criptografía.
+```
 
 ### Procedimiento
 
@@ -117,50 +152,40 @@ Podemos saber el tipo de SHA3 por el largo del hash, en este caso, el hash tiene
 
 Podemos comprobarlo con la salida al convertir el mensaje:
 
-SHA3 del ejercicio: bced1be95fbd85d2ffcce9c85434d79aa26f24ce82fbd4439517ea3f072d56fe
-
 ```bash
-Mensaje: En KeepCoding aprendemos cómo protegernos con criptografía
-sha3_224 28 5f12ac6c044097c694bf740504679ef78e38a4a8fca86eb4ef9e05ae
-sha3_256 32 bced1be95fbd85d2ffcce9c85434d79aa26f24ce82fbd4439517ea3f072d56fe
-sha3_384 48 e5bf162669b89ec5e6e7a406bf148719906ed3755baab32c891b1e0e59ec75e40564e2a3d9d4432defb28904eec7e827
-sha3_512 64 cc4d56beacf9a488f92b32b612147c088e87d2c9563c6e38bca6e834d7c742dff906dcd68b8bb8ed98f045e02c2e59c6608216225179348ae4db66c65e6e927c
+SHA3 del ejercicio: 
+bced1be95fbd85d2ffcce9c85434d79aa26f24ce82fbd4439517ea3f072d56fe
 ```
+
+![Ejercicio 5](./imgs/5.png)
 
 Si utilizamos SHA2:
-SHA2 del ejercicio: 4cec5a9f85dcc5c4c6ccb603d124cf1cdc6dfe836459551a1044f4f2908aa5d63739506f6468833d77c07cfd69c488823b8d858283f1d05877120e8c5351c833
 
 ```bash
-Mensaje: En KeepCoding aprendemos cómo protegernos con criptografía
-sha224 28 a4544beb16e1dfb9b578d518bf19e2a8109ffe27cab9172911e55543
-sha256 32 13067f558aed141a490bf95775e0c6fc583a09178ae7a0fefe93a8336be81237
-sha384 48 dca9a06f36b492b374216e60dc7668bea8119ec35ca259aa797ec8125654f4dc088144b00f16d5155bcb3c1e295784f4
-sha512 64 4cec5a9f85dcc5c4c6ccb603d124cf1cdc6dfe836459551a1044f4f2908aa5d63739506f6468833d77c07cfd69c488823b8d858283f1d05877120e8c5351c833
+SHA2 del ejercicio: 
+4cec5a9f85dcc5c4c6ccb603d124cf1cdc6dfe836459551a1044f4f2908aa5d
+63739506f6468833d77c07cfd69c488823b8d858283f1d05877120e8c5351c833
 ```
+
+![Ejercicio 5](./imgs/5b.png)
 
 Podemos ver que el algoritmo utilizado fue sha512.
 
 Si convertimos el mensaje dado y comparamos con el anterior:
 
-```bash
-Mensaje: En KeepCoding aprendemos cómo protegernos con criptografía.
-sha3_256 32 302be507113222694d8c63f9813727a85fef61a152176ca90edf1cfb952b19bf
+![Ejercicio 5](./imgs/5c.png)
 
-Mensaje: En KeepCoding aprendemos cómo protegernos con criptografía
-sha3_256 32 bced1be95fbd85d2ffcce9c85434d79aa26f24ce82fbd4439517ea3f072d56fe
-```
-
-Podemos ver que el hash cambia completamente, por lo que los hashes son lo suficientemente distintos con un cambio menor.
-
-![Ejercicio 5](./imgs/5.png)## Ejercio 6
+Podemos ver que el hash cambia completamente, por lo que los hashes son lo suficientemente distintos con un cambio menor.## Ejercio 6
 
 Se nos pide calcular la HMAC del mensaje "Siempre existe más de una forma de hacerlo, y más de una solución válida" usando la clave almacenada en el keystore.
 
 ## Datos
 
+```bash
 Mensaje: Siempre existe más de una forma de hacerlo, y más de una solución válida
 
 Clave: A212A51C997E14B4DF08D55967641B0677CA31E049E672A4B06861AA4D5826EB
+```
 
 ## Procedimiento
 
@@ -209,11 +234,13 @@ KCV(AES) => primeros 3 bytes de AES de la clave o toda??
 
 ## Datos
 
+```bash
 Clave AES: A2CFF885901A5449E9C448BA5B948A8C4EE377152B3F1ACFA0148FB3A426DB72
 
-mensaje: 00000000000000000000000000000000
+Mensaje: 00000000000000000000000000000000
 
-iv: 00000000000000000000000000000000
+IV: 00000000000000000000000000000000
+```
 
 ## Procedimiento
 
@@ -229,18 +256,22 @@ Además, se nos pide firmar el siguiente mensaje:
 
 ## Datos
 
-mensaje: Se debe ascender inmediatamente a Raúl. Es necesario mejorarle sus condiciones 
-económicas un 20% para que se quede con nosotros.
+```bash
+Mensaje: Se debe ascender inmediatamente a Raúl. Es necesario 
+mejorarle sus condiciones económicas un 20% para que se quede
+con nosotros.
 
-firma pgp: MensajeRespoDRaulARRHH.txt.sig
+Firma pgp: MensajeRespoDRaulARRHH.txt.sig
 
-claves: Pedro-priv.txt y Pedro-publ.txt
+Claves: Pedro-priv.txt y Pedro-publ.txt
 
-mensaje a firmar como RRHH: Viendo su perfil en el mercado, hemos decidido ascenderle y mejorarle un 25% su 
-salario. Saludos.
+Mensaje a firmar como RRHH: Viendo su perfil en el mercado, 
+hemos decidido ascenderle y mejorarle un 25% su salario. Saludos.
 
-mensaje a cifrar con cable publica de RRHH y pedro: Estamos todos de acuerdo, el ascenso será el mes que viene, agosto, si no hay 
-sorpresas.
+Mensaje a cifrar con cable publica de RRHH y pedro: 
+Estamos todos de acuerdo, el ascenso será el mes que viene, 
+agosto, si no hay sorpresas.
+```
 
 ## Procedimiento
 
@@ -293,7 +324,17 @@ Se nos pide descifrar el mensaje, una vez hecho, lo volvemos a descifrar y compr
 
 ## Datos
 
-SHA256: b72e6fd48155f565dd2684df3ffa8746d649b11f0ed4637fc4c99d18283b32e1709b30c96b4a8a20d5dbc639e9d83a53681e6d96f76a0e4c279f0dffa76a329d04e3d3d4ad629793eb00cc76d10fc00475eb76bfbc1273303882609957c4c0ae2c4f5ba670a4126f2f14a9f4b6f41aa2edba01b4bd586624659fca82f5b4970186502de8624071be78ccef573d896b8eac86f5d43ca7b10b59be4acf8f8e0498a455da04f67d3f98b4cd907f27639f4b1df3c50e05d5bf63768088226e2a9177485c54f72407fdf358fe64479677d8296ad38c6f177ea7cb74927651cf24b01dee27895d4f05fb5c161957845cd1b5848ed64ed3b03722b21a526a6e447cb8ee
+```bash
+SHA256: b72e6fd48155f565dd2684df3ffa8746d649b11f0ed4637fc4c99d18
+283b32e1709b30c96b4a8a20d5dbc639e9d83a53681e6d96f76a0e4c279f0dff
+a76a329d04e3d3d4ad629793eb00cc76d10fc00475eb76bfbc12733038826099
+57c4c0ae2c4f5ba670a4126f2f14a9f4b6f41aa2edba01b4bd586624659fca82
+f5b4970186502de8624071be78ccef573d896b8eac86f5d43ca7b10b59be4acf
+8f8e0498a455da04f67d3f98b4cd907f27639f4b1df3c50e05d5bf6376808822
+6e2a9177485c54f72407fdf358fe64479677d8296ad38c6f177ea7cb74927651
+cf24b01dee27895d4f05fb5c161957845cd1b5848ed64ed3b03722b21a526a6e
+447cb8ee
+```
 
 Podemos hacer cat *.pem para ver el contenido de los archivos y vemos que son claves RSA.
 
@@ -349,9 +390,11 @@ Debemos detectar un fallo en el uso del siguiente algoritmo AES/GCM.
 
 ## Datos
 
+```bash
 Clave: E2CFF885901B3449E9C448BA5B948A8C4EE322152B3F1ACFA0148FB3A426DB74
 
 Nonce: 9Yccn/f5nJJhAt2S
+```
 
 ## Procedimiento
 
@@ -363,15 +406,18 @@ Además, debemos calcular el valor de la firma hexadecimal con la curva elíptic
 
 ## Datos
 
-mensaje: El equipo está preparado para seguir con el proceso, necesitaremos más recursos
+```bash
+Mensaje: El equipo está preparado para seguir con el proceso, 
+necesitaremos más recursos
 
-clave privada: clave-rsa-oaep-priv.pem
+Clave privada: clave-rsa-oaep-priv.pem
 
-clave publica: clave-rsa-oaep-publ.pem
+Clave publica: clave-rsa-oaep-publ.pem
 
-clave privada ed: ed25519-priv
+Clave privada ed: ed25519-priv
 
-clave publica ed: ed25519-publ
+Clave publica ed: ed25519-publ
+```
 
 ## Procedimiento
 
@@ -387,10 +433,10 @@ Se nos pide calcular una clave AES, usando una HKDF con SHA-512, se nos da una c
 
 ## Datos
 
+```bash
 Master key: A2CFF885901A5449E9C448BA5B948A8C4EE377152B3F1ACFA0148FB3A426DB72
-
-identificador: e43bb4067cbcfab3bec54437b84bef4623e345682d89de9948fbb0afedc461a3
-
+Identificador: e43bb4067cbcfab3bec54437b84bef4623e345682d89de9948fbb0afedc461a3
+```
 ## Procedimiento
 
 Importamos la masterkey del keystore y el identificador del dispositivo. Calculamos la clave AES con HKDF y SHA-512. Finalmente, mostramos la clave en hexadecimal.
@@ -410,15 +456,12 @@ Debemos obtener los siguientes datos a partir de los mismos:
 
 ## Datos
 
-Bloque TR31:
-
-```
-D0144D0AB00S000042766B9265B2DF93AE6E29B58135B77A2F616C8D515ACDBE6A5626F79FA7B4071E9EE1423C6D7970FA2B965D18B23922B5B2E5657495E03CD857FD37018E111B
-```
-
+```bash
+Bloque TR31: 
+D0144D0AB00S000042766B9265B2DF93AE6E29B58135B77A2F616C8D515ACDB
+E6A5626F79FA7B4071E9EE1423C6D7970FA2B965D18B23922B5B2E5657495E0
+3CD857FD37018E111B
 Clave de transporte:
-
-```
 A1A10101010101010101010101010102
 ```
 

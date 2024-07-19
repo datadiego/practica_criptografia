@@ -6,15 +6,18 @@ Además, debemos calcular el valor de la firma hexadecimal con la curva elíptic
 
 ## Datos
 
-mensaje: El equipo está preparado para seguir con el proceso, necesitaremos más recursos
+```bash
+Mensaje: El equipo está preparado para seguir con el proceso, 
+necesitaremos más recursos
 
-clave privada: clave-rsa-oaep-priv.pem
+Clave privada: clave-rsa-oaep-priv.pem
 
-clave publica: clave-rsa-oaep-publ.pem
+Clave publica: clave-rsa-oaep-publ.pem
 
-clave privada ed: ed25519-priv
+Clave privada ed: ed25519-priv
 
-clave publica ed: ed25519-publ
+Clave publica ed: ed25519-publ
+```
 
 ## Procedimiento
 

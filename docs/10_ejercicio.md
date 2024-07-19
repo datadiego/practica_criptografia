@@ -6,18 +6,22 @@ Además, se nos pide firmar el siguiente mensaje:
 
 ## Datos
 
-mensaje: Se debe ascender inmediatamente a Raúl. Es necesario mejorarle sus condiciones 
-económicas un 20% para que se quede con nosotros.
+```bash
+Mensaje: Se debe ascender inmediatamente a Raúl. Es necesario 
+mejorarle sus condiciones económicas un 20% para que se quede
+con nosotros.
 
-firma pgp: MensajeRespoDRaulARRHH.txt.sig
+Firma pgp: MensajeRespoDRaulARRHH.txt.sig
 
-claves: Pedro-priv.txt y Pedro-publ.txt
+Claves: Pedro-priv.txt y Pedro-publ.txt
 
-mensaje a firmar como RRHH: Viendo su perfil en el mercado, hemos decidido ascenderle y mejorarle un 25% su 
-salario. Saludos.
+Mensaje a firmar como RRHH: Viendo su perfil en el mercado, 
+hemos decidido ascenderle y mejorarle un 25% su salario. Saludos.
 
-mensaje a cifrar con cable publica de RRHH y pedro: Estamos todos de acuerdo, el ascenso será el mes que viene, agosto, si no hay 
-sorpresas.
+Mensaje a cifrar con cable publica de RRHH y pedro: 
+Estamos todos de acuerdo, el ascenso será el mes que viene, 
+agosto, si no hay sorpresas.
+```
 
 ## Procedimiento
 

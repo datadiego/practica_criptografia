@@ -4,9 +4,11 @@ Se nos pide calcular la HMAC del mensaje "Siempre existe más de una forma de ha
 
 ## Datos
 
+```bash
 Mensaje: Siempre existe más de una forma de hacerlo, y más de una solución válida
 
 Clave: A212A51C997E14B4DF08D55967641B0677CA31E049E672A4B06861AA4D5826EB
+```
 
 ## Procedimiento
 
